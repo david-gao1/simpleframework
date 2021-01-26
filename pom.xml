@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gao</groupId>
+    <artifactId>simpleframework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--设置打包方式：web项目下需要war的形式：启动项目之后会一直启动    -->
+    <packaging>war</packaging>
+
+    <properties>
+        <!--        项目构建的编码方式-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--        <dependency>-->
+        <!--            &lt;!&ndash;  相当于package  &ndash;&gt;-->
+        <!--            <groupId></groupId>-->
+        <!--            &lt;!&ndash;  jar包的名字&ndash;&gt;-->
+        <!--            <artifactId></artifactId>-->
+        <!--        </dependency>-->
+        <dependency>
+            <!--     servlet-api       -->
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- jsp-api       -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!--    编译项目-->
+    <!--    项目文件名-->
+    <!--    使用一些插件进行编译-->
+    <!--    1、编译的插件（maven repo中找与maven编译类似）-->
+    <build>
+        <finalName>simpleframework</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <!--需要指定编译前和编译后的jdk版本-->
+                    <configuration>
+                        <source>8</source>
+                        <target>8</target>
+                    </configuration>
+                </plugin>
+                <!--    添加web容器插件使得项目能够跑起来，idea 无限版不需要？？？-->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <path>/${project.artifactId}</path><!--    指定编译的项目名-->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+</project>
